@@ -1,0 +1,41 @@
+===================
+SYSTEM REQUIREMENTS
+===================
+-- suitable C++ compiler (preferably gcc >= 3.4)
+-- make
+
+This code has been tested using gcc 3.4.2 on Solaris 5.8 (sparc), and
+gcc 4.1.2 on GNU Linux 2.6.18 (x86), but should compile fine with any
+standard C++ compiler.
+
+===========
+COMPILATION
+===========
+A makefile has been included with this distribution, so to compile the code
+it suffices to run the make command.
+All the source code is located in the src/ directory, and there is one
+test case included so far in the tests/ directory.
+
+=====
+USAGE
+=====
+./maxflow [FILE]
+
+The FILE parameter is optional; if unspecified, it will default to
+"challenge.net". Otherwise, it will read the input network from FILE.
+The format of the file must be in the DIMACS format, and must be
+syntactically correct (otherwise the behaviour is undefined). The
+DIMACS format is described in the source code, as well as at the following
+webpage: http://lpsolve.sourceforge.net/5.5/DIMACS_maxf.htm
+
+The value of the maximum flow is displayed upon termination of this program.
+
+=========
+ALGORITHM
+=========
+The algorithm used is the highest-level variant of the preflow-push algorithm,
+with several heuristics:
+- local relabeling heuristic
+- gap heuristic
+- global relabeling heuristic (actually this is only done twice)
+- 2-phase approach
